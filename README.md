@@ -176,7 +176,7 @@ show privilege
 
 ## 🛡️ Hardening del switch Cisco
 
-Se implementaron medidas de endurecimiento alineadas con recomendaciones de seguridad de Cisco IOS/CIS. Los controles incluyen SSHv2 y claves RSA 2048, prohibición de Telnet en VTY, deshabilitación de los servidores web de IOS, deshabilitación de IP source routing, expiración de sesiones administrativas y restricción SNMP.
+Se implementaron medidas de endurecimiento alineadas con recomendaciones de seguridad de Cisco IOS/CIS. Los controles incluyen SSHv2 y claves RSA 2048, prohibición de Telnet en VTY, deshabilitación de los servidores web de IOS, deshabilitación de IP source routing, expiración de sesiones administrativas y restricción SNMP. El **running-config original confirma además el apagado administrativo de cinco puertos sin uso**: Gi0/3 y Gi1/0–Gi1/3, con la descripción `UNUSED-PORT-DISABLED`.
 
 | Control | Configuración | Cómo verificar |
 |:--|:--|:--|
@@ -187,6 +187,7 @@ Se implementaron medidas de endurecimiento alineadas con recomendaciones de segu
 | Sin IP source routing | `no ip source-route` | `show running-config all \| include source-route` |
 | Timeout administrativo | `exec-timeout 5 0` | `show running-config \| section line vty` |
 | SNMP con privilegio mínimo | Comunidad RO + ACL | `show running-config \| include snmp-server` |
+| Puertos no utilizados deshabilitados | `shutdown` en Gi0/3 y Gi1/0–Gi1/3 | [`SW1-CISCO.txt`](configuraciones/SW1-CISCO.txt) |
 
 **La atribución a controles CIS concretos debe contrastarse con la edición del Benchmark usada en la práctica.** No se afirma cumplimiento formal del benchmark completo.
 
@@ -268,6 +269,11 @@ Parcial-Redes-Seguridad-2025-1331/
 ├── documentacion/
 │   ├── verificaciones.md
 │   └── guion-video.md
+├── configuraciones/
+│   ├── README.md
+│   ├── R1-CISCO.txt
+│   ├── SW1-CISCO.txt
+│   └── FGT-01.conf
 └── evidencias/
     ├── README.md
     ├── 01-*.png              # Infraestructura y topología
@@ -281,9 +287,19 @@ Parcial-Redes-Seguridad-2025-1331/
 
 **[Abrir galería con las 29 capturas](evidencias/README.md)** · **[Abrir el guion del video](documentacion/guion-video.md)** · **[Comandos y verificaciones](documentacion/verificaciones.md)**
 
-### Configuraciones originales
+### 📄 Configuraciones reales exportadas
 
-Los running-configs individuales de **R1-CISCO** y **SW1-CISCO**, y la exportación GUI de **FGT-01**, deben incorporarse en archivos independientes, con contraseñas y claves redactadas. No se incluye una configuración completa reconstruida de memoria como si fuera una exportación del equipo.
+Los archivos ya están publicados por dispositivo y se obtuvieron directamente del router, switch y FortiGate. Se protegieron las credenciales antes de publicarlos.
+
+| Equipo | Exportación | Contenido clave |
+|:--|:--|:--|
+| **R1-CISCO** | **[Ver running-config Cisco IOSv](configuraciones/R1-CISCO.txt)** | AAA consola/AUX, NPS, DHCP, VPN, SSH y SNMP |
+| **SW1-CISCO** | **[Ver running-config Cisco IOSvL2](configuraciones/SW1-CISCO.txt)** | SSHv2, hardening, puertos desactivados, SNMP, ACL |
+| **FGT-01** | **[Ver extracto del backup FortiOS](configuraciones/FGT-01.conf)** | Interfaces, VPN fase 1/2, políticas y ruta estática |
+
+> **Alcance:** los archivos Cisco son las configuraciones capturadas, salvo banners de licencia y valores secretos redactados. El archivo del FortiGate es un **extracto literal** del backup original exportado desde la GUI: se omitieron certificados, claves privadas y secciones predeterminadas sin relación con la práctica. Los archivos públicos no son respaldos restaurables.
+
+**[Consultar la documentación de las configuraciones](configuraciones/README.md)**
 
 ---
 

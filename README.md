@@ -1,5 +1,10 @@
-<!-- Sustituir este texto por la URL real del video de YouTube en cuanto se publique. -->
-🎬 **VIDEO DEMOSTRATIVO (YOUTUBE):** *pendiente de publicación.*
+## 🎬 Video demostrativo — Segundo Parcial
+
+**▶️ [Ver demostración completa en YouTube](https://youtu.be/m7rV6heYFqU)**
+
+[![Ver video demostrativo del Segundo Parcial](https://img.youtube.com/vi/m7rV6heYFqU/hqdefault.jpg)](https://youtu.be/m7rV6heYFqU)
+
+---
 
 <p align="center">
   <img src="assets/portada-seguridad-redes.svg" alt="Portada del Segundo Parcial de Seguridad de Redes" width="100%"/>

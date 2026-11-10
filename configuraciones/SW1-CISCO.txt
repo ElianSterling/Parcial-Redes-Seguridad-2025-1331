@@ -1,0 +1,137 @@
+! SW1-CISCO - extracto íntegro del running-config, con secretos protegidos
+! Fuente: exportación real de Cisco IOS; no utilizar como archivo de restauración.
+! Se omitieron únicamente los textos de los banners de licencia de IOSv.
+! Los valores <REDACTED> sustituyen secretos y comunidades originales.
+Current configuration : 3695 bytes
+!
+! Last configuration change at 13:45:10 UTC Tue Nov 10 2026
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname SW1-CISCO
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username admin1331 privilege 15 secret 5 <REDACTED>
+no aaa new-model
+!
+!
+!
+!
+!
+no ip source-route
+!
+!
+!
+ip domain-name itla.local
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ description UNUSED-PORT-DISABLED
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ description UNUSED-PORT-DISABLED
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ description UNUSED-PORT-DISABLED
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ description UNUSED-PORT-DISABLED
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ description UNUSED-PORT-DISABLED
+ shutdown
+ negotiation auto
+!
+interface Vlan1
+ description ADMINISTRACION-SWITCH
+ ip address 10.25.13.2 255.255.255.0
+!
+ip default-gateway 10.25.13.1
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+ip access-list standard ZABBIX-SNMP-ACL
+ permit 10.25.13.105
+ deny   any
+!
+!
+!
+!
+!
+snmp-server community <REDACTED> RO ZABBIX-SNMP-ACL
+snmp-server location ITLA-Proxmox-SW1
+snmp-server contact Network-Administrator
+!
+control-plane
+!
+! banner exec omitido en copia pública
+! banner incoming omitido en copia pública
+! banner login omitido en copia pública
+!
+line con 0
+line aux 0
+line vty 0 4
+ exec-timeout 5 0
+ login local
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ login local
+ transport input ssh
+!
+!
+end

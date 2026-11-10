@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610">
+<rect width="1200" height="610" fill="#ffffff"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#182433}.title{font-size:27px;font-weight:700}.subtitle{font-size:15px;fill:#4e6273}.name{font-size:19px;font-weight:700}.ip{font-size:15px}.small{font-size:13px;fill:#536579}.box{fill:#f6f8fb;stroke:#607d9b;stroke-width:2;rx:9}.line{fill:none;stroke:#456987;stroke-width:3}.vpn{stroke:#22785f;stroke-width:5;stroke-dasharray:10,8}.tag{font-size:15px;font-weight:700;fill:#216e57}</style>
+<text x="40" y="48" class="title">Infraestructura del parcial de Seguridad de Redes</text>
+<text x="40" y="77" class="subtitle">GNS3 + Proxmox VE | Cisco IOSv / IOSvL2 | Windows AD-NPS | Zabbix | FortiGate VM</text>
+<rect x="28" y="112" width="730" height="455" rx="18" fill="#eaf2fb" stroke="#91b0d1" stroke-width="2"/>
+<text x="46" y="141" class="name">Sede Cisco · LAN 10.25.13.0/24 · vmbr1</text>
+<rect x="48" y="191" width="155" height="105" class="box"/>
+<text x="125" y="229" text-anchor="middle" class="name">PC1 (VPCS)</text><text x="125" y="254" text-anchor="middle" class="ip">10.25.13.150</text><text x="125" y="277" text-anchor="middle" class="small">DHCP desde R1</text>
+<rect x="269" y="191" width="155" height="105" class="box"/>
+<text x="346" y="229" text-anchor="middle" class="name">SW1-CISCO</text><text x="346" y="254" text-anchor="middle" class="ip">10.25.13.2/24</text><text x="346" y="277" text-anchor="middle" class="small">SNMP RO / SSH / CIS</text>
+<rect x="491" y="191" width="226" height="105" class="box"/>
+<text x="604" y="229" text-anchor="middle" class="name">R1-CISCO</text><text x="604" y="254" text-anchor="middle" class="ip">Gi0/0: 10.25.13.1/24</text><text x="604" y="277" text-anchor="middle" class="small">DHCP / AAA CON+AUX / IPsec</text>
+<path class="line" d="M203 243 H269 M424 243 H491"/>
+<rect x="95" y="370" width="237" height="117" class="box"/>
+<text x="213" y="401" text-anchor="middle" class="name">Windows Server 2019</text><text x="213" y="427" text-anchor="middle" class="ip">10.25.13.10</text><text x="213" y="450" text-anchor="middle" class="small">AD DS · NPS · DNS</text><text x="213" y="471" text-anchor="middle" class="small">Dominio: itla.test</text>
+<rect x="397" y="370" width="264" height="117" class="box"/>
+<text x="529" y="401" text-anchor="middle" class="name">ZABBIX-SRV (CT 120)</text><text x="529" y="427" text-anchor="middle" class="ip">10.25.13.105</text><text x="529" y="451" text-anchor="middle" class="small">Monitor SNMP de R1 y SW1</text>
+<path class="line" d="M346 296 V338 H213 V370 M346 338 H529 V370"/>
+<text x="378" y="334" class="small">Cloud LAN / enp6s19</text>
+<rect x="793" y="112" width="380" height="455" rx="18" fill="#eaf7f1" stroke="#80b8a1" stroke-width="2"/>
+<text x="812" y="141" class="name">Sede FortiGate · LAN 10.25.14.0/24</text>
+<rect x="828" y="201" width="300" height="118" class="box"/>
+<text x="978" y="231" text-anchor="middle" class="name">FGT-01 (VM 160)</text>
+<text x="978" y="260" text-anchor="middle" class="ip">port2: 172.31.13.2/30</text>
+<text x="978" y="287" text-anchor="middle" class="ip">port3: 10.25.14.1/24</text>
+<path class="vpn" d="M717 244 H828"/>
+<text x="770" y="205" text-anchor="middle" class="tag">IPsec</text>
+<text x="770" y="225" text-anchor="middle" class="small">vmbr2</text>
+<text x="604" y="312" text-anchor="middle" class="small">Gi0/1: 172.31.13.1/30</text>
+<rect x="860" y="390" width="232" height="104" class="box"/>
+<text x="976" y="431" text-anchor="middle" class="name">PC2 (VPCS)</text><text x="976" y="460" text-anchor="middle" class="ip">10.25.14.10/24</text><text x="976" y="480" text-anchor="middle" class="small">Gateway: 10.25.14.1</text>
+<path class="line" d="M978 319 V390"/>
+<text x="991" y="359" class="small">vmbr3 / enp6s21</text>
+<text x="40" y="596" class="subtitle">Diagrama de enlaces lógicos. La administración FortiGate se realiza mediante port1 en vmbr0.</text>
+</svg>

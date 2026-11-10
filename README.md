@@ -1,3 +1,16 @@
+<!-- DEMOSTRACIÓN: insertar aquí la URL de YouTube al publicarla -->
+**Video demostrativo (YouTube):** pendiente de publicación.
+
+<div align="center">
+
+![Portada — Segundo Parcial de Seguridad de Redes](assets/portada-seguridad-redes.svg)
+
+**[Topología](diagramas/topologia.svg)** · **[Verificaciones](documentacion/verificaciones.md)** · **[Guion del video](documentacion/guion-video.md)**
+
+</div>
+
+---
+
 # Parcial de Seguridad de Redes — Cisco, NPS, Zabbix y FortiGate
 
 **Estudiante:** Elian Sterling Severino Mejía · **Matrícula:** 2025-1331  

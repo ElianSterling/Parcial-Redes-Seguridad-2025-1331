@@ -5,7 +5,7 @@
 
 ![Portada — Segundo Parcial de Seguridad de Redes](assets/portada-seguridad-redes.svg)
 
-**[Topología](diagramas/topologia.svg)** · **[Verificaciones](documentacion/verificaciones.md)** · **[Guion del video](documentacion/guion-video.md)**
+**[📸 Galería de evidencias](evidencias/README.md)** · **[🗺️ Topología](diagramas/topologia.svg)** · **[🔎 Verificaciones](documentacion/verificaciones.md)** · **[🎬 Guion del video](documentacion/guion-video.md)**
 
 </div>
 

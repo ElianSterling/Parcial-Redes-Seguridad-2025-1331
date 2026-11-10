@@ -106,3 +106,16 @@ Los nombres recomendados para organizar las capturas son:
 | `evidencias/05-vpn/` | VPN activa, IPsec y prueba desactivada |
 | `evidencias/06-ssh/` | Acceso remoto y bloqueo de Telnet |
 | `evidencias/07-direccionamiento/` | Interfaces, diagrama y conectividad |
+
+
+## 8. Archivos de configuración publicados y verificaciones adicionales
+
+Las configuraciones se extrajeron de los equipos y se publicaron en el repositorio después de anonimizar credenciales:
+
+- [R1-CISCO — running-config real](../configuraciones/R1-CISCO.txt)
+- [SW1-CISCO — running-config real](../configuraciones/SW1-CISCO.txt)
+- [FortiGate — extracto anonimizado del respaldo de configuración GUI](../configuraciones/FGT-01.conf)
+
+El running-config de SW1 demuestra cinco puertos apagados administrativamente: `GigabitEthernet0/3` y `GigabitEthernet1/0` a `GigabitEthernet1/3`. Todos incluyen `description UNUSED-PORT-DISABLED` y el comando `shutdown`. Este hallazgo amplía los controles documentados de hardening.
+
+La exportación de FortiGate confirma `VPN-R1-ITLA`, `VPN-R1-ITLA-P2`, ambas políticas de firewall y la ruta estática `10.25.13.0/24` a través de la interfaz del túnel. El extracto público omitió certificados, llaves privadas y configuraciones predeterminadas ajenas a esta infraestructura.

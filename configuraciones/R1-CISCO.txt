@@ -1,0 +1,180 @@
+! R1-CISCO - extracto íntegro del running-config, con secretos protegidos
+! Fuente: exportación real de Cisco IOS; no utilizar como archivo de restauración.
+! Se omitieron únicamente los textos de los banners de licencia de IOSv.
+! Los valores <REDACTED> sustituyen secretos y comunidades originales.
+Current configuration : 4698 bytes
+!
+! Last configuration change at 15:16:19 UTC Tue Nov 10 2026 by cisco.admin
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1-CISCO
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+aaa new-model
+!
+!
+aaa group server radius NPS-GRP
+ server name NPS-ITLA
+ ip radius source-interface GigabitEthernet0/0
+!
+aaa authentication login default local
+aaa authentication login CON-AUX group NPS-GRP local
+aaa authorization console
+aaa authorization exec CON-AUX group NPS-GRP local 
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+ip dhcp excluded-address 10.25.13.1 10.25.13.149
+ip dhcp excluded-address 10.25.13.200 10.25.13.254
+!
+ip dhcp pool LAN-PARCIAL
+ network 10.25.13.0 255.255.255.0
+ default-router 10.25.13.1 
+ dns-server 10.25.13.10 
+ lease 7
+!
+!
+!
+ip domain name itla.local
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username admin1331 privilege 15 secret 9 <REDACTED>
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+crypto isakmp policy 10
+ authentication pre-share
+ group 2
+crypto isakmp key <REDACTED> address 172.31.13.2    
+!
+!
+crypto ipsec transform-set VPN-DES-SHA esp-des esp-sha-hmac 
+ mode tunnel
+!
+!
+!
+crypto map VPN-FORTIGATE 10 ipsec-isakmp 
+ set peer 172.31.13.2
+ set security-association lifetime seconds 43200
+ set transform-set VPN-DES-SHA 
+ match address VPN-TRAFFIC
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description LAN-PRINCIPAL
+ ip address 10.25.13.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description WAN-HACIA-FORTIGATE
+ ip address 172.31.13.1 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+ crypto map VPN-FORTIGATE
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.25.14.0 255.255.255.0 172.31.13.2
+ip ssh version 2
+!
+ip access-list standard ZABBIX-SNMP-ACL
+ permit 10.25.13.105
+ deny   any
+!
+ip access-list extended VPN-TRAFFIC
+ permit ip 10.25.13.0 0.0.0.255 10.25.14.0 0.0.0.255
+!
+ipv6 ioam timestamp
+!
+snmp-server community <REDACTED> RO ZABBIX-SNMP-ACL
+snmp-server location ITLA-Proxmox-HomeLab
+snmp-server contact Network-Administrator
+snmp-server chassis-id 
+!
+!
+!
+radius server NPS-ITLA
+ address ipv4 10.25.13.10 auth-port 1812 acct-port 1813
+ key <REDACTED>
+!
+!
+control-plane
+!
+! banner exec omitido en copia pública
+! banner incoming omitido en copia pública
+! banner login omitido en copia pública
+!
+line con 0
+ authorization exec CON-AUX
+ login authentication CON-AUX
+line aux 0
+ authorization exec CON-AUX
+ login authentication CON-AUX
+line vty 0 4
+ exec-timeout 5 0
+ transport input ssh
+!
+no scheduler allocate
+!
+end
